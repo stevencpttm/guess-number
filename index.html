@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<title>Guess App</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+	<!-- BMI 頁面結構 -->
+	<div id="page-guess-number" data-role="page">
+
+	    <!-- Header 頂部欄 -->
+	    <div data-role="header">
+	        <h1>Guess Number</h1>
+	    </div>
+
+	    <!-- 內容 -->
+	    <div data-role="content">
+	        <label for="number">Please enter a number:</label>
+	        <input type="tel" name="number" id="number" value="">
+
+	        <div id="result"></div>
+
+	        <button class="ui-btn ui-shadow" id="btn-guess">Guess</button>
+	    </div>
+	</div>
+
+	<script>
+	var the_number = Math.floor(Math.random() * 100);
+	console.log(the_number)
+
+	$('#btn-guess').on('click', function (e) {
+		var input_number = $('#number').val();
+		input_number = parseInt(input_number);
+
+		var message = '';
+
+		if (isNaN(input_number) || input_number < 0 || input_number > 100) {
+			message = 'Please input a valid number'
+		} else if ( input_number < the_number ) {
+			message = 'Please try a greater number'
+		} else if ( input_number > the_number ) {
+			message = 'Please try a smaller number'
+		} else {
+			message = 'Congradulation! The number is ' + input_number
+		}
+
+		$('#result').html(message);
+	});
+	</script>
+
+</body>
+</html>
